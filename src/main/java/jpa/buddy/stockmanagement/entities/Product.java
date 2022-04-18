@@ -7,14 +7,16 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "product")
+@Table(name = "product", indexes = {
+        @Index(name = "idx_product_name", columnList = "name")
+})
 public class Product {
     @Id
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "product_code", nullable = false)
+    private String product_code;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_type_id", nullable = false)
@@ -40,12 +42,12 @@ public class Product {
         this.productType = productType;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct_code() {
+        return product_code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct_code(String name) {
+        this.product_code = name;
     }
 
     public UUID getId() {
