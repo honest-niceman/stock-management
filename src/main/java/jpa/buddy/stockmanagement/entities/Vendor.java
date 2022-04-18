@@ -1,5 +1,7 @@
 package jpa.buddy.stockmanagement.entities;
 
+import jpa.buddy.stockmanagement.enums.VendorStatus;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,6 +20,18 @@ public class Vendor {
 
     @OneToMany(mappedBy = "vendor", orphanRemoval = true)
     private Set<Product> products = new LinkedHashSet<>();
+
+    @Enumerated
+    @Column(name = "vendor_status")
+    private VendorStatus vendorStatus;
+
+    public VendorStatus getVendorStatus() {
+        return vendorStatus;
+    }
+
+    public void setVendorStatus(VendorStatus vendorStatus) {
+        this.vendorStatus = vendorStatus;
+    }
 
     public String getName() {
         return name;
